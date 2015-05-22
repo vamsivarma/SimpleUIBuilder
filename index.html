@@ -1,0 +1,127 @@
+<!doctype html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8"/>
+		<title>Simple UI Builder Using AngularJS</title>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+		<meta content="" name="description"/>
+		<meta content="" name="author"/>
+		
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+		
+		<link href="lib/css/jquery-ui.min.css" rel="stylesheet"/>
+		<link href="lib/css/bootstrap.min.css" rel="stylesheet"/>
+		<link href="lib/css/font-awesome.min.css" rel="stylesheet"/>
+		
+		<link href="css/simpleUIBuilder.css" rel="stylesheet"/>
+		
+		<script type="text/javascript" src="lib/js/jquery-1.8.2.min.js" ></script>
+		<script type="text/javascript" src="lib/js/jquery-ui.min.js" ></script>
+		<script type="text/javascript" src="lib/js/bootstrap.min.js" ></script>
+		<script type="text/javascript" src="lib/js/angular.min.js" ></script>
+		<script type="text/javascript" src="lib/js/angular-resource.min.js" ></script>
+		<script type="text/javascript" src="lib/js/angular-route.min.js" ></script>
+		<script type="text/javascript" src="lib/js/angular-cookies.min.js" ></script>
+		<script type="text/javascript" src="lib/js/angular-animate.min.js" ></script>
+		
+		<script type="text/javascript" src="js/simpleUIBuilder.js" ></script>
+		
+	</head>
+	<body>
+		<div class="uiBuilderMainHolder" ng-app="simpleUIBuilderApp">
+			<div class="uiBuilderHeader row"></div>
+			<div class="uiBuilderBody row" ng-controller="simpleUIBuilderController">
+				<div class="col-md-3 uiBuilderLeftPane">
+					<div class="col-md-12 leftPaneContentHolder">
+						<div class="leftPaneTop">
+							<div class="row">
+								<div class="leftFloatCls">
+									<label>UI Builder Options</label>
+								</div>
+								<div class="rightFloatCls">
+									<div class="uiBuilderClear cursorPointerCls" ng-click="clearUIBuilderModel()">
+										<i class="fa fa-times-circle-o"></i>
+										<span>Clear</span>
+									</div>	
+								</div>
+							</div>
+							<div class="row">
+								<div class="clearFLoatCls">
+									<input type="text" placeholder="Filter UI Elements Display" class="fullWidthCls"/>
+								</div>
+							</div>		
+						</div>
+						<div clas="leftPaneBottom">
+							<div ng-repeat="uiElem in uiBuilderDataModel" class="leftPaneUIElemCard clearFLoatCls">
+								<div class="leftFloatCls"> 
+									<input type="checkbox" class="leftFloatCls uiElemSelectCls"  ng-model="uiElemCheckModel" ng-change="uiBuilderElemToggle(uiElem.elemID, uiElemCheckModel)" ng-checked="uiElem.elemCount">
+									<label for="uiElemSelectCls">{{uiElem.elemLabel}}</label>
+								</div>
+								<div class="rightFloatCls">
+									[{{uiElem.elemCount}}]	
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-md-9 uiBuilderRightPane">
+					<div class="col-md-12 uiBuilderRightTop clearFLoatCls">
+						<div ng-repeat="uiElem in uiBuilderDataModel" class="rightTopPaneUIElemCard leftFloatCls">
+							<div ng-if="uiElem.elemCount">
+								<label class="rightSpacingCls">{{uiElem.elemLabel}}</label>
+								<span class="rightSpacingCls">[{{uiElem.elemCount}}]</span>
+								<i class="fa fa-times-circle-o cursorPointerCls" ng-click="uiBuilderElemToggle(uiElem.elemID, false)"></i>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 uiBuilderRightBottom clearFLoatCls">
+						<div ng-repeat="uiElem in uiBuilderDataModel" class="rightBottomPaneUIElemCard clearFLoatCls col-md-12">
+							<div ng-if="uiElem.elemCount">
+								<div ng-repeat="uiBuildCounter in rangeRepeater(uiElem.elemCount) track by $index" class="clearFLoatCls">
+									<div class="uiElemMarkupLeft leftFloatCls col-md-2">
+										<label class="rightSpacingCls">{{uiElem.elemLabel}}</label>
+									</div>
+									<div class="uiElemMarkupMiddle leftFloatCls col-md-8">
+										<div class="leftFloatCls" ng-if="uiElem.elemID == 'text'">
+											<input type="text"/>
+										</div>
+										<div class="leftFloatCls" ng-if="uiElem.elemID == 'radio'">
+											<input type="radio" name="uiBuilderRadio" value="Yes">Yes
+											<input type="radio" name="uiBuilderRadio" value="No">No
+										</div>
+										<div class="leftFloatCls" ng-if="uiElem.elemID == 'area'">
+											<textarea></textarea>
+										</div>
+										<div class="leftFloatCls" ng-if="uiElem.elemID == 'check'">
+											<input type="checkbox" value="Yes">Yes
+											<input type="checkbox" value="No">No
+										</div>
+										<div class="leftFloatCls" ng-if="uiElem.elemID == 'select'">
+											<select>
+												<option value="Yes">Yes</option>
+												<option value="No">No</option>
+											</select>
+										</div>	
+									</div>
+									<div class="uiElemMarkupRight leftFloatCls col-md-2">	
+										<i class="fa fa-plus-circle cursorPointerCls greenColorCls" ng-click="updateUIBuilder(uiElem.elemID, true)"></i>
+										<i class="fa fa-minus-circle cursorPointerCls redColorCls" ng-click="updateUIBuilder(uiElem.elemID, false)"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="uiBuilderFooter row"></div>
+		</div>	
+	</body>
+	<script type="text/javascript">
+		$(function() {
+			
+		});
+	</script>
+</html>

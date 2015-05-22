@@ -1,0 +1,98 @@
+.uiBuilderLeftPane {
+	min-height: 600px;
+	background-color: #FFFF66;
+	color: green;
+}
+
+
+.uiBuilderRightTop {
+	min-height: 75px;
+	background-color: #5D6250;
+	line-height: 75px;
+}
+
+.uiBuilderRightBottom {
+	height: 520px;
+	background-color: #C3AEA2;
+	overflow-y: auto;
+}
+
+.uiBuilderLeftPane, .uiBuilderRightPane, .uiBuilderRightBottom, .uiBuilderRightTop {
+	padding: 0px !important;
+}
+
+.uiBuilderMainHolder .row {
+	margin: 0px !important;
+}
+
+.leftFloatCls {
+	float: left;
+}
+
+.rightFloatCls {
+	float: right;
+}
+
+.clearFLoatCls {
+	clear: both;
+}
+
+.cursorPointerCls {
+	cursor: pointer;
+}
+
+.leftPaneTop {
+	margin: 10px 0px 20px 0px;
+}
+
+.uiElemSelectCls {
+	margin-right: 3px !important;
+}
+
+.rightSpacingCls {
+	margin-right: 2px;
+}
+
+.rightTopPaneUIElemCard {
+	padding-left: 5px;
+	font-size: 18px;
+	color: #B0BDE4;
+	background-color: #5D6250;
+}
+
+.uiElemMarkupRight {
+	font-size: 20px;
+}
+
+.rightBottomPaneUIElemCard {
+	margin-top: 5px;
+}
+
+.greenColorCls {
+	color: green;
+}
+
+.redColorCls {
+	color: red;
+}
+
+.fullWidthCls {
+	width: 100%;
+}
+
+.uiBuilderRightPane {
+	background-color: #5D6250; 
+}
+
+.uiElemMarkupLeft {
+	min-width: 100px;
+}
+
+.uiElemMarkupMiddle {
+	min-width: 200px;
+}
+
+.uiElemMarkupRight {
+	min-width: 75px;
+}
+
